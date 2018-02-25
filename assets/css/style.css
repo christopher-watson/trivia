@@ -1,0 +1,11 @@
+body{
+  background-image: url("../images/background.jpg");
+}
+
+.jumbotron-fluid{
+  background-image: url("../images/Jeopardy-logo.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-top: 1%;
+  height: 30vh;
+}
