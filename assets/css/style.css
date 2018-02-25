@@ -8,4 +8,13 @@ body{
   background-repeat: no-repeat;
   margin-top: 1%;
   height: 30vh;
+  -webkit-filter: drop-shadow(5px 5px 5px #222);
+  filter: drop-shadow(5px 5px 5px #222);
+}
+
+#mute,
+#quit,
+#question-box{
+  -webkit-filter: drop-shadow(0px 5px 5px #222);
+  filter: drop-shadow(0px 5px 5px #222);
 }
