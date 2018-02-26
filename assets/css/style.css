@@ -33,12 +33,12 @@ body{
 #timer{
   font-size: 250%;
   color: #6c757c;
-  text-shadow: 1px 1px 5px #0b3f94;
+  text-shadow: 2px 2px 5px #0b3f94;
 }
 
 #question{
   font-family: 'Lora', sans-serif;
   font-size: 225%;
   color: #6C757C;
-  text-shadow: 1px 1px 5px #0B3F94;
+  text-shadow: 2px 2px 5px #0B3F94;
 }
