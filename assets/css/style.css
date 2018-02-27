@@ -34,10 +34,6 @@ body{
   cursor: pointer;
 }
 
-/* #mute:active,
-#quit:active{
-  margin-top: 5px;
-} */
 
 #timer{
   font-size: 250%;
@@ -67,6 +63,6 @@ body{
 }
 
 #start-button{
-  visibility: hidden;
+  visibility: visible;
 }
 
