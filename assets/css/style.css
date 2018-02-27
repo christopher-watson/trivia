@@ -1,6 +1,8 @@
 body{
   background-image: url("../images/background.jpg");
   background-size: cover;
+  background-position: top;
+  background-attachment: fixed;
 }
 
 .jumbotron-fluid{
@@ -20,7 +22,8 @@ body{
 #mute,
 #quit,
 #question-box,
-#timer{
+#timer,
+#start-button{
   -webkit-filter: drop-shadow(0px 5px 5px #222);
   filter: drop-shadow(0px 5px 5px #222);
 }
@@ -28,7 +31,13 @@ body{
 #mute,
 #quit{
   font-size: 110%;
+  cursor: pointer;
 }
+
+/* #mute:active,
+#quit:active{
+  margin-top: 5px;
+} */
 
 #timer{
   font-size: 250%;
@@ -42,3 +51,22 @@ body{
   color: #6C757C;
   text-shadow: 2px 2px 5px #0B3F94;
 }
+
+#question-box{
+  position: relative;
+}
+
+#start-button-box{
+  position: absolute;
+  margin-top: 20%;
+  right: 0;
+}
+
+#question-inner{
+  visibility: hidden;
+}
+
+#start-button{
+  visibility: hidden;
+}
+
