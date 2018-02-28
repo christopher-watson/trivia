@@ -110,28 +110,68 @@ var jeopardy = [
       "Myles Garrett",
       "Solomon Thomas"
     ]
-  },
-  
+  }
 ]
-
 
 var currQues = "";
 var running = false;
 var r = Math.ceil(Math.random() * 8);
+var used = [];
+var timer = 30;
+var interval;
 
-function newGame (){
-  running = true;
-  $question.text(jeopardy.question[r].ques);
-  
-  console.log(quesArray[r]);
+function newQuestion(){
+  // running = true;
+  for(var i = 0; i < jeopardy.length; i++) {
+    if (!used.includes(r)){
+      currQues = jeopardy[r].ques;
+      $question.text(jeopardy[r].ques);
+      $answer1.text(jeopardy[r].ansArray[1])
+      $answer2.text(jeopardy[r].ansArray[2])
+      $answer3.text(jeopardy[r].ansArray[3])
+      $answer4.text(jeopardy[r].ansArray[4])
+      used.push(r);
+    }
+    if (used.length === jeopardy.length){
+      // running = false;
+    }
+  }
+  console.log(jeopardy[r].ansArray[0]);
   console.log(r);
-};
+  console.log(used);
+}
 
+function run() {
+  clearInterval(interval);
+  interval = setInterval(decrement, 1000);
+}
+
+function decrement() {
+  running = true
+  timer--;
+  $timer.text(":" + timer);
+  if (timer === 0) {
+    stop();
+    alert("Time Up!");
+    running = false;
+  }
+}
+
+function stop() {
+  clearInterval(interval);
+}
+
+function gameTimer(){
+  if (running){
+    newQuestion();
+  }
+}
 
 
 $("#start-button").click(function(){
   $("#start-button").hide();
   $("#question-inner").show();
-  newGame();
+  newQuestion();
+  run();
 });
 
