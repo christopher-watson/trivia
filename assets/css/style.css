@@ -54,12 +54,13 @@ body{
 
 #start-button-box{
   position: absolute;
-  margin-top: 20%;
+  /* margin-top: 25%; */
   right: 0;
 }
 
 #question-inner{
-  visibility: hidden;
+  display: none;
+  /* visibility: hidden; */
 }
 
 #start-button{

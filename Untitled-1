@@ -1,0 +1,84 @@
+var quesArray = [
+  "",
+  "What NFL team won Super Bowl 51",
+  "Who was the NBA's Most Valuable Player (MVP) for 2017",
+  "The 2017 Louis Vuitton Cup was awarded to Team New Zealand in which sport",
+  "In what month did the 2017 Tour de France take place",
+  "Which NHL team won the 2017 Stanley Cup finals against the Nashville Predators",
+  "What horse won the 2017 Kentucky Derby in 2017",
+  "What country won the 2017 World Junior Ice Hockey Championships in 2017",
+  "Who was the first pick of the 2017 NBA draft?",
+  "Who was the first pick in the 2017 NFL draft?"
+];
+
+var ansArray1 = [
+  "1",
+  "New England Patriots",
+  "Dallas Cowboys",
+  "Los Angeles Chargers", 
+  "Atlanta Falcons"
+];
+
+var ansArray2 = [
+  "2",
+  "Draymond Green",
+  "Russell Westbrook",
+  "Kawhi Leonard",
+  "James Harden"
+];
+
+var ansArray3 = [
+  "3",
+  "Tennis",
+  "Rugby",
+  "Sailing",
+  "Curling"
+];
+
+var ansArray4 = [
+  "2",
+  "June",
+  "July",
+  "May",
+  "April"
+];
+
+var ansArray5 = [
+  "2",
+  "Ottawa Senators",
+  "Pittsburgh Penguins",
+  "Columbus Blue Jackets",
+  "Washington Capitals"
+];
+
+var ansArray6 = [
+  "1",
+  "Always Dreaming",
+  "Lookin At Lee",
+  "Classic Empire",
+  "Battle of Midway"
+];
+
+var ansArray7 = [
+  "1",
+  "United States",
+  "Russia",
+  "Finland",
+  "Canada"
+];
+
+var ansArray8 = [
+  "4",
+  "Lonzo Ball",
+  "Jayson Tatum",
+  "Josh Jackson",
+  "Markelle Fultz"
+]
+
+var ansArray9 = [
+  "3",
+  "Leonard Fournette",
+  "Mitchell Trubisky",
+  "Myles Garrett",
+  "Solomon Thomas"
+];
