@@ -116,14 +116,20 @@ var jeopardy = [
 var currQues = "";
 var running = false;
 var used = [];
-var timer = 5;
+var timer = 15;
 var interval, r;
 var gameOver = false;
 var quesNum = 0;
+var answer = "";
+var correctNum = 0;
+var wrongNum = 0;
+var unAnswered = 0;
 
 function newQuestion(){
   random();
   quesNum++;
+  answer = "";
+  answerQues();
   console.log("quesNum: " + quesNum);
   if(!gameOver){
     console.log("RUNNING");
@@ -144,6 +150,25 @@ function newQuestion(){
   }
 }
 
+function answerQues(){
+  console.log("correctNum: " + correctNum);
+  console.log("wrongNum: " + wrongNum);
+  console.log("unAnswered: " + unAnswered);
+
+  if(answer == jeopardy[r].ansArray[0]){
+    correctNum++;
+    console.log("correctNum: " + correctNum);
+  }
+  else if(answer !== jeopardy[r].ansArray[0]){
+    wrongNum++;
+    console.log("wrongNum: " + wrongNum);
+  }
+  if(timer === 0){
+    unAnswered++;
+    console.log("unAnswered: " + unAnswered);
+  }
+}
+
 function run() {
   clearInterval(interval);
   interval = setInterval(decrement, 1000);
@@ -155,7 +180,7 @@ function decrement() {
   if (timer === 0) {
     stop();
     newQuestion();
-    timer = 5;
+    timer = 15;
   }
 }
 
@@ -177,10 +202,8 @@ function random(){
   if (quesNum === 8){
       stop();
       gameOver = true;
-    }
+  }
 }
-
-
 
 $("#start-button").click(function(){
   $("#start-button").hide();
@@ -188,3 +211,18 @@ $("#start-button").click(function(){
   newQuestion();
 });
 
+$($answer1).click(function(){
+  answer = jeopardy[r].ansArray[1];
+});
+
+$($answer2).click(function(){
+  answer = jeopardy[r].ansArray[2];
+});
+
+$($answer3).click(function(){
+  answer = jeopardy[r].ansArray[3];
+});
+
+$($answer4).click(function(){
+  answer = jeopardy[r].ansArray[4];
+});
