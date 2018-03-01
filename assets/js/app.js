@@ -115,30 +115,33 @@ var jeopardy = [
 
 var currQues = "";
 var running = false;
-var r = Math.ceil(Math.random() * 8);
 var used = [];
-var timer = 30;
-var interval;
+var timer = 5;
+var interval, r;
+var gameOver = false;
+var quesNum = 0;
 
 function newQuestion(){
-  // running = true;
-  for(var i = 0; i < jeopardy.length; i++) {
-    if (!used.includes(r)){
-      currQues = jeopardy[r].ques;
-      $question.text(jeopardy[r].ques);
-      $answer1.text(jeopardy[r].ansArray[1])
-      $answer2.text(jeopardy[r].ansArray[2])
-      $answer3.text(jeopardy[r].ansArray[3])
-      $answer4.text(jeopardy[r].ansArray[4])
-      used.push(r);
-    }
-    if (used.length === jeopardy.length){
-      // running = false;
-    }
+  random();
+  quesNum++;
+  console.log("quesNum: " + quesNum);
+  if(!gameOver){
+    console.log("RUNNING");
+    console.log("TOP r: " + r);
+    run();
+    $question.text(jeopardy[r].ques);
+    $answer1.text(jeopardy[r].ansArray[1])
+    $answer2.text(jeopardy[r].ansArray[2])
+    $answer3.text(jeopardy[r].ansArray[3])
+    $answer4.text(jeopardy[r].ansArray[4])
+    console.log("BOTTOM r: " + r);
+    r = 0;
+    console.log("answer: " + jeopardy[r].ansArray[0]);
+    console.log("used: " + used);
   }
-  console.log(jeopardy[r].ansArray[0]);
-  console.log(r);
-  console.log(used);
+  else if(gameOver){
+    alert("DONE");
+  }
 }
 
 function run() {
@@ -147,31 +150,41 @@ function run() {
 }
 
 function decrement() {
-  running = true
   timer--;
   $timer.text(":" + timer);
   if (timer === 0) {
     stop();
-    alert("Time Up!");
-    running = false;
+    newQuestion();
+    timer = 5;
   }
 }
 
-function stop() {
+function stop(){
   clearInterval(interval);
 }
 
-function gameTimer(){
-  if (running){
-    newQuestion();
+function random(){
+  if (quesNum < 8){
+    r = Math.ceil(Math.random() * 8);
+    if (!used.includes(r)){
+      used.push(r);
+      return r;
+    }
+    else{
+      random();
+    }
   }
+  if (quesNum === 8){
+      stop();
+      gameOver = true;
+    }
 }
+
 
 
 $("#start-button").click(function(){
   $("#start-button").hide();
   $("#question-inner").show();
   newQuestion();
-  run();
 });
 
