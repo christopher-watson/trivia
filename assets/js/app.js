@@ -117,7 +117,7 @@ var currQues = "";
 var running = false;
 var used = [];
 var timer = 15;
-var interval, r;
+var interval, r, completed;
 var gameOver = false;
 var quesNum = 0;
 var answer = "";
@@ -129,12 +129,12 @@ function newQuestion(){
   random();
   quesNum++;
   answer = "";
-  answerQues();
   console.log("quesNum: " + quesNum);
   if(!gameOver){
     console.log("RUNNING");
     console.log("TOP r: " + r);
     run();
+    answerQues();
     $question.text(jeopardy[r].ques);
     $answer1.text(jeopardy[r].ansArray[1])
     $answer2.text(jeopardy[r].ansArray[2])
@@ -151,21 +151,56 @@ function newQuestion(){
 }
 
 function answerQues(){
+  completed = false;
   console.log("correctNum: " + correctNum);
   console.log("wrongNum: " + wrongNum);
   console.log("unAnswered: " + unAnswered);
-
+  if (!completed){
+    $($answer1).click(function(){
+      answer = jeopardy[r].ansArray[1];
+      completed = true;
+      stop();
+      newQuestion();
+      
+    });
+    $($answer2).click(function(){
+      answer = jeopardy[r].ansArray[2];
+      completed = true;
+      stop();
+      newQuestion();
+    });
+    $($answer3).click(function(){
+      answer = jeopardy[r].ansArray[3];
+      completed = true;
+      stop();
+      newQuestion();
+    });
+    $($answer4).click(function(){
+      answer = jeopardy[r].ansArray[4];
+      completed = true;
+      stop();
+      newQuestion();
+    });
+  }
   if(answer == jeopardy[r].ansArray[0]){
     correctNum++;
+    alert("RIGHT");
     console.log("correctNum: " + correctNum);
   }
   else if(answer !== jeopardy[r].ansArray[0]){
     wrongNum++;
+    alert("WRONG");
     console.log("wrongNum: " + wrongNum);
   }
   if(timer === 0){
     unAnswered++;
     console.log("unAnswered: " + unAnswered);
+  }
+}
+
+function nextAnswer(){
+  if (completed){
+
   }
 }
 
@@ -211,18 +246,4 @@ $("#start-button").click(function(){
   newQuestion();
 });
 
-$($answer1).click(function(){
-  answer = jeopardy[r].ansArray[1];
-});
 
-$($answer2).click(function(){
-  answer = jeopardy[r].ansArray[2];
-});
-
-$($answer3).click(function(){
-  answer = jeopardy[r].ansArray[3];
-});
-
-$($answer4).click(function(){
-  answer = jeopardy[r].ansArray[4];
-});
