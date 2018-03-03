@@ -1,4 +1,4 @@
- $("#timer").text(":30");
+$("#timer").text(":30");
 
 //dom elements
 var $mute = $('#mute');
