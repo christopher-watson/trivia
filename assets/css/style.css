@@ -28,12 +28,15 @@ body{
   filter: drop-shadow(0px 5px 5px #222);
 }
 
+#start-button{
+  padding: 15px 40px;
+}
+
 #mute,
 #reset{
   font-size: 110%;
   cursor: pointer;
 }
-
 
 #timer{
   font-size: 250%;
@@ -48,22 +51,23 @@ body{
   text-shadow: 2px 2px 5px #0B3F94;
 }
 
+#main{
+  position: absolute;
+}
+
 #question-container{
   position: relative;
+  display: none;
 }
 
 #start-button-container{
   position: absolute;
-  /* margin-top: 25%; */
   right: 0;
+  margin-top: 100px;
 }
 
 #answer-container{
   display: none;
-  /* visibility: hidden; */
 }
 
-#start-button{
-  visibility: visible;
-}
 

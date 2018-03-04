@@ -229,6 +229,7 @@ function newGame(){
   unAnswered = 0;
   $("#timer").text(":" + timer);
   $("#start-button").show();
+  $("#question-container").hide();
   $("#answer-container").hide();
 }
 
@@ -237,6 +238,7 @@ $("#start-button").click(function(){
   runGame();
   // audio.play();
   $("#start-button").hide();
+  $("#question-container").show();
   $("#answer-container").show();
 });
 
