@@ -14,7 +14,6 @@ var wrong = 0;
 var unAnswered = 0;
 
  var jeopardy = [
-  // questionObj = {
     item = {
       question: "What NFL team won Super Bowl 51",
       rightAnswer: "New England Patriots",
@@ -27,7 +26,7 @@ var unAnswered = 0;
     },
     item = {
       question: "Who was the NBA's Most Valuable Player (MVP) for 2017",
-      rightAnswer: "Russel Westbrook",
+      rightAnswer: "Russell Westbrook",
       answerArray: [
         "Draymond Green",
         "Russell Westbrook",
@@ -105,7 +104,6 @@ var unAnswered = 0;
         "Solomon Thomas"
       ]
     }
-  // }
 ]
 
 function random(){
@@ -118,9 +116,6 @@ function random(){
     else{
       random();
     }
-  }
-  if (quesNum === 8){
-    alert("Game Over");
   }
 }
 
@@ -190,12 +185,8 @@ function stop() {
 function runGame(){
   if (used.length < 8){
     if(!answered){
-      // random();
       displayQuestion();
       run();
-    }
-    else if(answered){
-      gameUpdate();
     }
     console.log(r);
     console.log(jeopardy[r].question);
@@ -205,11 +196,20 @@ function runGame(){
   }
   else{
     stop();
-    $.alert({
-      title: 'Game Over!',
-      content: "Correct: " + correct + " Wrong: " + wrong + " Unanswered: " + unAnswered,
+    $.confirm({
+      title: 'GAME OVER',
+      content: 'Play Again?',
       theme: 'modern',
-    });
+      buttons: {
+          Yes: function () {
+              stop();
+              newGame();
+          },
+          No: function () {
+              // $.alert('Ok!');
+          }
+      }
+  });
   }
 }
 
@@ -261,7 +261,7 @@ $("#reset").click(function(){
             newGame();
         },
         No: function () {
-            $.alert('Ok!');
+            // $.alert('Ok!');
         }
     }
 });
