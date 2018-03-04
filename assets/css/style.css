@@ -20,7 +20,7 @@ body{
 }
 
 #mute,
-#quit,
+#reset,
 #question-box,
 #timer,
 #start-button{
@@ -29,7 +29,7 @@ body{
 }
 
 #mute,
-#quit{
+#reset{
   font-size: 110%;
   cursor: pointer;
 }

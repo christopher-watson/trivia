@@ -6,7 +6,6 @@ var $quit = $('#quit');
 
 var used = [];
 var quesNum = 0;
-
 var r, interval;
 var answered = false;
 var running = false;
@@ -127,6 +126,7 @@ function random(){
 }
 
 function displayQuestion(){
+  random();
   $('#question').empty();
   $('#answer1').empty();
   $('#answer2').empty();
@@ -189,18 +189,29 @@ function stop() {
 }
 
 function runGame(){
-  if(!answered){
-    random();
-    displayQuestion();
-    run();
+  if (used.length < 8){
+    if(!answered){
+      // random();
+      displayQuestion();
+      run();
+    }
+    else if(answered){
+      gameUpdate();
+    }
+    console.log(r);
+    console.log(jeopardy[r].question);
+    console.log(jeopardy[r].rightAnswer);
+    console.log(jeopardy[r].answerArray);
+    console.log(used);
   }
-  else if(answered){
-    gameUpdate();
+  else{
+    stop();
+    $.alert({
+      title: 'Game Over!',
+      content: "Correct: " + correct + " Wrong: " + wrong + " Unanswered: " + unAnswered,
+      theme: 'modern',
+    });
   }
-  console.log(r);
-  console.log(jeopardy[r].question);
-  console.log(jeopardy[r].rightAnswer);
-  console.log(jeopardy[r].answerArray);
 }
 
 function gameReset(){
@@ -208,7 +219,19 @@ function gameReset(){
   answered = false;
 }
 
-// runGame();
+function newGame(){
+  var used = [];
+  var quesNum = 0;
+  var answered = false;
+  var running = false;
+  var timer = 15;
+  var correct = 0;
+  var wrong = 0;
+  var unAnswered = 0;
+  $("#timer").text(":" + timer);
+  $("#start-button").show();
+  $("#answer-container").hide();
+}
 
 $(document).on("click", ".answers", answerQuestion);
 $("#start-button").click(function(){
@@ -216,6 +239,7 @@ $("#start-button").click(function(){
   $("#start-button").hide();
   $("#answer-container").show();
 });
+
 $(".answers").click(function(){
   stop();
   setTimeout(function(){
@@ -224,4 +248,19 @@ $(".answers").click(function(){
   }, 1000 * 2);
 })
 
-
+$("#reset").click(function(){
+  $.confirm({
+    title: 'RESET',
+    content: 'Are You Sure?',
+    theme: 'modern',
+    buttons: {
+        Yes: function () {
+            stop();
+            newGame();
+        },
+        No: function () {
+            $.alert('Ok!');
+        }
+    }
+});
+})
