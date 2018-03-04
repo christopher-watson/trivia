@@ -140,7 +140,7 @@ function answerQuestion(){
     stop();
     $.alert({
       title: 'RIGHT!',
-      content: "Correct: " + correct + '\n' + " Wrong: " + wrong + " Unanswered: " + unAnswered,
+      content: "Correct: " + correct + "<br>" + " Wrong: " + wrong + "<br>" + " Unanswered: " + unAnswered,
       theme: 'modern',
       buttons: {
         'Next Question': function(){
@@ -157,7 +157,7 @@ function answerQuestion(){
     stop();
     $.alert({
       title: 'WRONG',
-      content: "Correct: " + correct + " Wrong: " + wrong + " Unanswered: " + unAnswered,
+      content: "Correct: " + correct + "<br>" + " Wrong: " + wrong + "<br>" + " Unanswered: " + unAnswered,
       theme: 'modern',
       buttons: {
         'Next Question': function(){
@@ -182,7 +182,7 @@ function decrement() {
     stop();
     $.alert({
       title: 'Time Up!',
-      content: "Correct: " + correct + " Wrong: " + wrong + " Unanswered: " + unAnswered,
+      content: "Correct: " + correct + "<br>" + " Wrong: " + wrong + "<br>" + " Unanswered: " + unAnswered,
       theme: 'modern',
       buttons: {
         'Next Question': function(){
@@ -221,13 +221,17 @@ function runGame(){
       content: 'Play Again?',
       theme: 'modern',
       buttons: {
-          Yes: function () {
-              stop();
-              newGame();
-          },
-          No: function () {
-              // $.alert('Ok!');
-          }
+        Yes: function () {
+            stop();
+            newGame();
+        },
+        No: function () {
+          $("#timer").text(":0");
+          $("#start-button").hide();
+          $("#question-container").hide();
+          $("#answer-container").hide();
+          $("#austin").show();          
+        }
       }
   });
   }
@@ -251,6 +255,7 @@ function newGame(){
   $("#start-button").show();
   $("#question-container").hide();
   $("#answer-container").hide();
+  $("#austin").hide(); 
 }
 
 $(document).on("click", ".answers", answerQuestion);
