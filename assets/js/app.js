@@ -4,12 +4,16 @@ var $mute = $('#mute');
 var $startButton = $('#start-button');
 var $quit = $('#quit');
 
-
-var r, interval;
 var used = [];
 var quesNum = 0;
+
+var r, interval;
 var answered = false;
+var running = false;
 var timer = 15;
+var correct = 0;
+var wrong = 0;
+var unAnswered = 0;
 
  var jeopardy = [
   // questionObj = {
@@ -54,7 +58,7 @@ var timer = 15;
       ]
     },
     item = {
-      question: "Which NHL team won teh 2017 Stanley Cup finals against the Nashville Predators",
+      question: "Which NHL team won the 2017 Stanley Cup finals against the Nashville Predators",
       rightAnswer: "Pittsburgh Penguins",
       answerArray: [
         "Ottawa Senators",
@@ -138,43 +142,86 @@ function displayQuestion(){
 function answerQuestion(){
   if($(this).text() === (jeopardy[r].rightAnswer)){
     answered = true;
-    alert("RIGHT");
+    correct++;
+    $.alert({
+      title: 'RIGHT!',
+      content: "Correct: " + correct + " Wrong: " + wrong + " Unanswered: " + unAnswered,
+      theme: 'modern',
+    });
   }
 
-  if($(this).text() !== (jeopardy[r].rightAnswer)){
+  else if($(this).text() !== (jeopardy[r].rightAnswer)){
     answered = true;
-    alert("WRONG");
+    wrong++;
+    $.alert({
+      title: 'WRONG',
+      content: "Correct: " + correct + " Wrong: " + wrong + " Unanswered: " + unAnswered,
+      theme: 'modern',
+    });
   }
 }
 
 function run() {
   clearInterval(interval);
   interval = setInterval(decrement, 1000);
+  running = true;
 }
 function decrement() {
   timer--;
   $('#timer').text(":" + timer);
   if (timer === 0) {
+    unAnswered++;
     stop();
-    alert("Time Up!");
+    $.alert({
+      title: 'Time Up!',
+      content: "Correct: " + correct + " Wrong: " + wrong + " Unanswered: " + unAnswered,
+      theme: 'modern',
+    });
+    setTimeout(function(){
+      gameReset();
+      runGame();
+    }, 1000 * 2);
   }
 }
 function stop() {
   clearInterval(interval);
+  running = false;
 }
 
+function runGame(){
+  if(!answered){
+    random();
+    displayQuestion();
+    run();
+  }
+  else if(answered){
+    gameUpdate();
+  }
+  console.log(r);
+  console.log(jeopardy[r].question);
+  console.log(jeopardy[r].rightAnswer);
+  console.log(jeopardy[r].answerArray);
+}
 
-random();
-displayQuestion();
-run();
-console.log(r);
-console.log(jeopardy[r].question);
-console.log(jeopardy[r].rightAnswer);
-console.log(jeopardy[r].answerArray);
+function gameReset(){
+  timer = 15;
+  answered = false;
+}
 
+// runGame();
+
+$(document).on("click", ".answers", answerQuestion);
 $("#start-button").click(function(){
+  runGame();
   $("#start-button").hide();
   $("#answer-container").show();
 });
+$(".answers").click(function(){
+  stop();
+  setTimeout(function(){
+    gameReset();
+    runGame();
+  }, 1000 * 2);
+})
 
-$(document).on("click", ".answers", answerQuestion);
+
