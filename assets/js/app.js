@@ -1,15 +1,14 @@
-// $("#timer").text(":30");
-
 var $mute = $('#mute');
 var $startButton = $('#start-button');
 var $quit = $('#quit');
+// var audio = new Audio('./../music/Jeopardy-theme-song.mp3');
 
 var used = [];
 var quesNum = 0;
 var r, interval;
 var answered = false;
 var running = false;
-var timer = 15;
+var timer = 20;
 var correct = 0;
 var wrong = 0;
 var unAnswered = 0;
@@ -215,7 +214,7 @@ function runGame(){
 }
 
 function gameReset(){
-  timer = 15;
+  timer = 20;
   answered = false;
 }
 
@@ -224,7 +223,7 @@ function newGame(){
   quesNum = 0;
   answered = false;
   running = false;
-  timer = 15;
+  timer = 20;
   correct = 0;
   wrong = 0;
   unAnswered = 0;
@@ -236,9 +235,12 @@ function newGame(){
 $(document).on("click", ".answers", answerQuestion);
 $("#start-button").click(function(){
   runGame();
+  // audio.play();
   $("#start-button").hide();
   $("#answer-container").show();
 });
+
+// $("#mute").on("click", audio.pause());
 
 $(".answers").click(function(){
   stop();
