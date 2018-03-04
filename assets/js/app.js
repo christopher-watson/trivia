@@ -220,14 +220,14 @@ function gameReset(){
 }
 
 function newGame(){
-  var used = [];
-  var quesNum = 0;
-  var answered = false;
-  var running = false;
-  var timer = 15;
-  var correct = 0;
-  var wrong = 0;
-  var unAnswered = 0;
+  used = [];
+  quesNum = 0;
+  answered = false;
+  running = false;
+  timer = 15;
+  correct = 0;
+  wrong = 0;
+  unAnswered = 0;
   $("#timer").text(":" + timer);
   $("#start-button").show();
   $("#answer-container").hide();
