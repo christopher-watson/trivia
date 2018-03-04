@@ -1,227 +1,110 @@
- $("#timer").text(":30");
+// $("#timer").text(":30");
 
-//dom elements
 var $mute = $('#mute');
-var $questionBox = $('#question-box');
 var $startButton = $('#start-button');
-var $questionInner = $('#question-inner');
-var $question = $('#question');
-var $answer1 = $('#answer1');
-var $answer2 = $('#answer2');
-var $answer3 = $('#answer3');
-var $answer4 = $('#answer4');
 var $quit = $('#quit');
-var $timer = $('#timer');
 
-var jeopardy = [
-  question = {
-    ques: "What NFL team won Super Bowl 51",
-    ansArray: [
-      "1",
-      "New England Patriots",
-      "Dallas Cowboys",
-      "Los Angeles Chargers", 
-      "Atlanta Falcons"
-    ]
-  },
-  question = {
-    ques: "Who was the NBA's Most Valuable Player (MVP) for 2017",
-    ansArray: [
-      "2",
-      "Draymond Green",
-      "Russell Westbrook",
-      "Kawhi Leonard",
-      "James Harden"
-    ]
-  },
-  
-  question = {
-    ques: "The 2017 Louis Vuitton Cup was awarded to Team New Zealand in which sport",
-    ansArray: [
-      "3",
-      "Tennis",
-      "Rugby",
-      "Sailing",
-      "Curling"
-    ]
-  },
-  
-  question = {
-    ques:"In what month did the 2017 Tour de France take place",
-    ansArray: [
-      "2",
-      "June",
-      "July",
-      "May",
-      "April"
-    ]
-  },
-  
-  question = {
-    ques: "Which NHL team won the 2017 Stanley Cup finals against the Nashville Predators",
-    ansArray: [
-      "2",
-      "Ottawa Senators",
-      "Pittsburgh Penguins",
-      "Columbus Blue Jackets",
-      "Washington Capitals"
-    ]
-  },
 
-  question = {
-    ques: "What horse won the 2017 Kentucky Derby in 2017",
-    ansArray: [
-      "1",
-      "Always Dreaming",
-      "Lookin At Lee",
-      "Classic Empire",
-      "Battle of Midway"
-    ]
-  },
-  
-  question = {
-    ques: "What country won the 2017 World Junior Ice Hockey Championships in 2017",
-    ansArray: [
-      "1",
-      "United States",
-      "Russia",
-      "Finland",
-      "Canada"
-    ]
-  },
-  
-  question = {
-    ques: "Who was the first pick of the 2017 NBA draft?",
-    ansArray: [
-      "4",
-      "Lonzo Ball",
-      "Jayson Tatum",
-      "Josh Jackson",
-      "Markelle Fultz"
-    ]
-  },
-  
-  question = {
-    ques: "Who was the first pick in the 2017 NFL draft?",
-    ansArray: [
-      "3",
-      "Leonard Fournette",
-      "Mitchell Trubisky",
-      "Myles Garrett",
-      "Solomon Thomas"
-    ]
-  }
-]
-
-var currQues = "";
-var running = false;
+var r, interval;
 var used = [];
-var timer = 15;
-var interval, r, completed;
-var gameOver = false;
 var quesNum = 0;
-var answer = "";
-var correctNum = 0;
-var wrongNum = 0;
-var unAnswered = 0;
+var answered = false;
+var timer = 15;
 
-function newQuestion(){
-  random();
-  quesNum++;
-  answer = "";
-  console.log("quesNum: " + quesNum);
-  if(!gameOver){
-    console.log("RUNNING");
-    console.log("TOP r: " + r);
-    run();
-    answerQues();
-    $question.text(jeopardy[r].ques);
-    $answer1.text(jeopardy[r].ansArray[1])
-    $answer2.text(jeopardy[r].ansArray[2])
-    $answer3.text(jeopardy[r].ansArray[3])
-    $answer4.text(jeopardy[r].ansArray[4])
-    console.log("BOTTOM r: " + r);
-    r = 0;
-    console.log("answer: " + jeopardy[r].ansArray[0]);
-    console.log("used: " + used);
-  }
-  else if(gameOver){
-    alert("DONE");
-  }
-}
-
-function answerQues(){
-  completed = false;
-  console.log("correctNum: " + correctNum);
-  console.log("wrongNum: " + wrongNum);
-  console.log("unAnswered: " + unAnswered);
-  if (!completed){
-    $($answer1).click(function(){
-      answer = jeopardy[r].ansArray[1];
-      completed = true;
-      stop();
-      newQuestion();
-      
-    });
-    $($answer2).click(function(){
-      answer = jeopardy[r].ansArray[2];
-      completed = true;
-      stop();
-      newQuestion();
-    });
-    $($answer3).click(function(){
-      answer = jeopardy[r].ansArray[3];
-      completed = true;
-      stop();
-      newQuestion();
-    });
-    $($answer4).click(function(){
-      answer = jeopardy[r].ansArray[4];
-      completed = true;
-      stop();
-      newQuestion();
-    });
-  }
-  if(answer == jeopardy[r].ansArray[0]){
-    correctNum++;
-    alert("RIGHT");
-    console.log("correctNum: " + correctNum);
-  }
-  else if(answer !== jeopardy[r].ansArray[0]){
-    wrongNum++;
-    alert("WRONG");
-    console.log("wrongNum: " + wrongNum);
-  }
-  if(timer === 0){
-    unAnswered++;
-    console.log("unAnswered: " + unAnswered);
-  }
-}
-
-function nextAnswer(){
-  if (completed){
-
-  }
-}
-
-function run() {
-  clearInterval(interval);
-  interval = setInterval(decrement, 1000);
-}
-
-function decrement() {
-  timer--;
-  $timer.text(":" + timer);
-  if (timer === 0) {
-    stop();
-    newQuestion();
-    timer = 15;
-  }
-}
-
-function stop(){
-  clearInterval(interval);
-}
+ var jeopardy = [
+  // questionObj = {
+    item = {
+      question: "What NFL team won Super Bowl 51",
+      rightAnswer: "New England Patriots",
+      answerArray: [
+        "New England Patriots",
+        "Dallas Cowboys",
+        "Los Angeles Chargers", 
+        "Atlanta Falcons"
+      ]
+    },
+    item = {
+      question: "Who was the NBA's Most Valuable Player (MVP) for 2017",
+      rightAnswer: "Russel Westbrook",
+      answerArray: [
+        "Draymond Green",
+        "Russell Westbrook",
+        "Kawhi Leonard",
+        "James Harden"
+      ]
+    },
+    item = {
+      question: "The 2017 Louis Vuitton Cup was awarded to Team New Zeland in which sport",
+      rightAnswer: "Sailing",
+      answerArray: [
+        "Tennis",
+        "Rugby",
+        "Sailing",
+        "Curling"
+      ]
+    },
+    item = {
+      question: "In what month did the 2017 Tour de France take place",
+      rightAnswer: "July",
+      answerArray: [
+        "June",
+        "July",
+        "May",
+        "April"
+      ]
+    },
+    item = {
+      question: "Which NHL team won teh 2017 Stanley Cup finals against the Nashville Predators",
+      rightAnswer: "Pittsburgh Penguins",
+      answerArray: [
+        "Ottawa Senators",
+        "Pittsburgh Penguins",
+        "Columbus Blue Jackets",
+        "Washington Capitals"
+      ]
+    },
+    item = {
+      question: "What horse won the 2017 Kentucky Derby",
+      rightAnswer: "Always Dreaming",
+      answerArray: [
+        "Always Dreaming",
+        "Lookin At Lee",
+        "Classic Empire",
+        "Battle of Midway"
+      ]
+    },
+    item = {
+      question: "What country won the 2017 World Junior Ice Hockey Championship",
+      rightAnswer: "United States",
+      answerArray: [
+        "United States",
+        "Russia",
+        "Finland",
+        "Canada"
+      ]
+    },
+    item = {
+      question: "Who was the first pick of the 2017 NBA Draft",
+      rightAnswer: "Markelle Fultz",
+      answerArray: [
+        "Lonzo Ball",
+        "Jayson Tatum",
+        "Josh Jackson",
+        "Markelle Fultz"
+      ]
+    },
+    item = {
+      question: "Who was the first pick in the 2017 NFL Draft",
+      rightAnswer: "Myles Garrett",
+      answerArray: [
+        "Leonard Fournette",
+        "Mitchell Trubisky",
+        "Myles Garrett",
+        "Solomon Thomas"
+      ]
+    }
+  // }
+]
 
 function random(){
   if (quesNum < 8){
@@ -235,15 +118,63 @@ function random(){
     }
   }
   if (quesNum === 8){
-      stop();
-      gameOver = true;
+    alert("Game Over");
   }
 }
 
+function displayQuestion(){
+  $('#question').empty();
+  $('#answer1').empty();
+  $('#answer2').empty();
+  $('#answer3').empty();
+  $('#answer4').empty();
+  $('#question').text(jeopardy[r].question);
+  $('#answer1').text(jeopardy[r].answerArray[0]);
+  $('#answer2').text(jeopardy[r].answerArray[1]);
+  $('#answer3').text(jeopardy[r].answerArray[2]);
+  $('#answer4').text(jeopardy[r].answerArray[3]);
+}
+
+function answerQuestion(){
+  if($(this).text() === (jeopardy[r].rightAnswer)){
+    answered = true;
+    alert("RIGHT");
+  }
+
+  if($(this).text() !== (jeopardy[r].rightAnswer)){
+    answered = true;
+    alert("WRONG");
+  }
+}
+
+function run() {
+  clearInterval(interval);
+  interval = setInterval(decrement, 1000);
+}
+function decrement() {
+  timer--;
+  $('#timer').text(":" + timer);
+  if (timer === 0) {
+    stop();
+    alert("Time Up!");
+  }
+}
+function stop() {
+  clearInterval(interval);
+}
+
+
+random();
+displayQuestion();
+run();
+console.log(r);
+console.log(jeopardy[r].question);
+console.log(jeopardy[r].rightAnswer);
+console.log(jeopardy[r].answerArray);
+
 $("#start-button").click(function(){
   $("#start-button").hide();
-  $("#question-inner").show();
-  newQuestion();
+  $("#answer-container").show();
 });
 
-
+$(document).on("click", ".answers", answerQuestion);

@@ -48,17 +48,17 @@ body{
   text-shadow: 2px 2px 5px #0B3F94;
 }
 
-#question-box{
+#question-container{
   position: relative;
 }
 
-#start-button-box{
+#start-button-container{
   position: absolute;
   /* margin-top: 25%; */
   right: 0;
 }
 
-#question-inner{
+#answer-container{
   display: none;
   /* visibility: hidden; */
 }
