@@ -17,9 +17,10 @@ body{
 
 .answers{
   box-shadow: 2px 2px 5px #0b3f94;
+  font-weight: bold;
 }
 
-#mute,
+.player,
 #reset,
 #question-box,
 #timer,
@@ -30,9 +31,10 @@ body{
 
 #start-button{
   padding: 15px 40px;
+  font-weight: bold;
 }
 
-#mute,
+.player,
 #reset{
   font-size: 110%;
   cursor: pointer;
@@ -45,8 +47,9 @@ body{
 }
 
 #question{
-  font-family: 'Lora', sans-serif;
-  font-size: 225%;
+  font-family: 'Didact Gothic', serif;
+  font-size: 275%;
+  font-weight: bold;
   color: #6C757C;
   text-shadow: 2px 2px 5px #0B3F94;
 }
@@ -66,10 +69,8 @@ body{
   margin-top: 100px;
 }
 
-#answer-container{
-  display: none;
-}
-
-#austin{
+#answer-container,
+#austin,
+#audio{
   display: none;
 }

@@ -7,7 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
   <link rel="stylesheet" href="./assets/css/style.css" class="css">
 </head>
 <body>
@@ -15,13 +16,16 @@
   <div class="container-fluid mt-4">
     <div class="row">
       <div class="col-2 text-center">
-        <span class="badge badge-pill badge-danger px-3 py-2 mt-5" id="mute">Mute</span>
+        <span class="badge badge-pill badge-danger px-3 py-2 mt-5 mx-1 player" id="play">
+          <i class="fas fa-play"></i></span>
+        <span class="badge badge-pill badge-danger px-3 py-2 mt-5 mx-1 player" id="pause">
+          <i class="fas fa-pause"></i></span>
       </div>
       <div class="col-8 text-center">
         <div class="container" id="main">
           <img src="./assets/images/austin-rogers.jpg" alt="Austin Rogers" id="austin">
           <div class="container" id="start-button-container">
-            <button type="button" class="btn btn-danger btn-lg" id="start-button">Start</button>
+            <button type="button" class="btn btn-danger btn-lg" id="start-button">START</button>
           </div>
           <div class="jumbotron jumbo-bg border border-dark pt-3" id="question-container">
             <div class="container" id="answer-container">
@@ -42,7 +46,9 @@
       </div>
     </div>
   </div>
-
+  <audio controls id="audio">
+      <source src="./assets/music/Jeopardy-theme-song.mp3" type="audio/mpeg">
+    </audio>
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
