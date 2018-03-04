@@ -219,13 +219,15 @@ function runGame(){
         Yes: function () {
           stop();
           newGame();
+          pauseAudio();
         },
         No: function () {
           $("#timer").text(":0");
           $("#start-button").hide();
           $("#question-container").hide();
           $("#answer-container").hide();
-          $("#austin").show();          
+          $("#austin").show();
+          pauseAudio();          
         }
       }
     });
@@ -295,6 +297,7 @@ $("#reset").click(function(){
       Yes: function () {
           stop();
           newGame();
+          pauseAudio();
       },
       No: function () {
           // return to game
