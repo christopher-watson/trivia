@@ -137,20 +137,34 @@ function answerQuestion(){
   if($(this).text() === (jeopardy[r].rightAnswer)){
     answered = true;
     correct++;
+    stop();
     $.alert({
       title: 'RIGHT!',
-      content: "Correct: " + correct + " Wrong: " + wrong + " Unanswered: " + unAnswered,
+      content: "Correct: " + correct + '\n' + " Wrong: " + wrong + " Unanswered: " + unAnswered,
       theme: 'modern',
+      buttons: {
+        'Next Question': function(){
+          gameReset();
+          runGame();
+        }
+      }
     });
   }
 
   else if($(this).text() !== (jeopardy[r].rightAnswer)){
     answered = true;
     wrong++;
+    stop();
     $.alert({
       title: 'WRONG',
       content: "Correct: " + correct + " Wrong: " + wrong + " Unanswered: " + unAnswered,
       theme: 'modern',
+      buttons: {
+        'Next Question': function(){
+          gameReset();
+          runGame();
+        }
+      }
     });
   }
 }
@@ -170,11 +184,17 @@ function decrement() {
       title: 'Time Up!',
       content: "Correct: " + correct + " Wrong: " + wrong + " Unanswered: " + unAnswered,
       theme: 'modern',
+      buttons: {
+        'Next Question': function(){
+          gameReset();
+          runGame();
+        }
+      }
     });
-    setTimeout(function(){
-      gameReset();
-      runGame();
-    }, 1000 * 2);
+    // setTimeout(function(){
+    //   gameReset();
+    //   runGame();
+    // }, 1000 * 2);
   }
 }
 function stop() {
@@ -246,10 +266,6 @@ $("#start-button").click(function(){
 
 $(".answers").click(function(){
   stop();
-  setTimeout(function(){
-    gameReset();
-    runGame();
-  }, 1000 * 2);
 })
 
 $("#reset").click(function(){
