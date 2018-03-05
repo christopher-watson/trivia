@@ -256,15 +256,13 @@ function newGame(){
 }
 
 var audio = document.getElementById("audio");
-var playing = false;
 audio.loop = true;
 function playAudio() { 
   audio.play();
-  playing = true;
+  audio.currentTime = 0;
 } 
 function pauseAudio() { 
   audio.pause();
-  playing = false;
 }
 
 $(document).on("click", ".answers", answerQuestion);
