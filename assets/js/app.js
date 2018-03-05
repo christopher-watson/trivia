@@ -155,7 +155,7 @@ function answerQuestion(){
     wrong++;
     stop();
     $.alert({
-      title: 'WRONG',
+      title: 'WRONG' + "<br>" + "<br>" + jeopardy[r].rightAnswer,
       content: "Correct: " + correct + "<br>" + " Wrong: " + wrong + "<br>" + " Unanswered: " + unAnswered,
       theme: 'modern',
       buttons: {
@@ -180,7 +180,7 @@ function decrement() {
     unAnswered++;
     stop();
     $.alert({
-      title: 'Time Up!',
+      title: 'Time Up!' + "<br>" + "<br>" + jeopardy[r].rightAnswer,
       content: "Correct: " + correct + "<br>" + " Wrong: " + wrong + "<br>" + " Unanswered: " + unAnswered,
       theme: 'modern',
       buttons: {
