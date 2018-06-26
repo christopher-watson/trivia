@@ -12,8 +12,10 @@ _(almost)_
 
 A Trivia based Web App
 
+[Play Here](https://christopher-watson.github.io/trivia-game/)
+
 * Users select from multiple choices to answer trivia questions
 * Players can choose to play with music!
 
-![Vinyl Collector Image](https://github.com/christopher-watson/trivia-game/blob/master/assets/images/tviKylNUZb.gif?raw=true "Vinyl Collector Image")
+![Jeopardy](https://github.com/christopher-watson/trivia-game/blob/master/assets/images/tviKylNUZb.gif?raw=true "Jeopardy")
 
