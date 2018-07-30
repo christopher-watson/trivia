@@ -1,4 +1,4 @@
-# trivia-game
+# trivia
 
 _Christopher Watson_
 
