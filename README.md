@@ -12,7 +12,7 @@ _(almost)_
 
 A Trivia based Web App
 
-[Play Here](http://christopher-watson.github.io/trivia-game/)
+[Play Here](http://christopherwatson.co/trivia/)
 
 * Users select from multiple choices to answer trivia questions
 * Players can choose to play with music!
